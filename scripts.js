@@ -53,11 +53,11 @@ const futureId = 9;
 
 // Do not change code above this comment
 
-console.log(holidays.futureId.name || "ID {futureId} not created yet");
+console.log(holidays[futureId]?.name || "ID {futureId} not created yet"); //fixed syntax
 
-copied = holidays.christmas;
-copied = { name: "X-mas Day" };
-correctDate = copied.date;
+const copied = {...holidays[christmas] }; //this wasn't an object
+copied.name = "X-mas Day"; //copied is refernced incorrectly
+const correctDate = new Date(copied.date);//const wasn't created
 correctDate.hours = 0;
 correctDate.minutes = 0;
 isEarlier = copied.date < holidays[6].date;
