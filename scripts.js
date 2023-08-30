@@ -58,20 +58,14 @@ console.log(holidays[futureId]?.name || "ID {futureId} not created yet"); //fixe
 const copied = {...holidays[christmas] }; //this wasn't an object
 copied.name = "X-mas Day"; //copied is refernced incorrectly
 const correctDate = new Date(copied.date);//const wasn't created
-correctDate.hours = 0;
-correctDate.minutes = 0;
-isEarlier = copied.date < holidays[6].date;
+correctDate.setHours(0);
+correctDate.setMinutes(0);
+const isEarlier = correctDate < holidays[christmas].date; //this needed to be a const;incorrect objects called
 console.log("New date is earlier:", isEarlier);
 if (isEarlier) copied.date = correctDate;
-console.log("ID change:", holidays[christmas].id != copied.id || copied.id);
-console.log(
-    "Name change:",
-    holidays[christmas].name != copied.name || copied.name
-);
-console.log(
-    "Date change:",
-    holidays[christmas].date != copied.date || copied.date
-);
+console.log("ID change:", holidays[christmas].id !== copied.id || copied.id); //have to use absolute ===
+console.log("Name change:", holidays[christmas].name !== copied.name || copied.name); //same thing, also, why were they on diff lines
+console.log("Date change:",holidays[christmas].date !== copied.date || copied.date);
 
 const firstHolidayTimestamp = Math.min(
     holidays[0].date.getTime,
